@@ -9,8 +9,11 @@ body{
     height: 100vh;
     background-color: red;
     display: flex;
-    align-items: center;
-    justify-content: center;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
 }
 
 .wrapper{
@@ -51,4 +54,38 @@ footer{
     position: absolute;
     bottom: 0;
     background-color: rgba(240, 248, 255, 0.139);
+}
+
+.paleta{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-end;
+	align-content: stretch;
+}
+
+.paleta div{
+    width: 342px;
+    height: 170px;
+}
+
+.cor1{
+    background-color: rgb(228, 77, 77);
+}
+
+.cor2{
+    background-color: rgb(163, 54, 54);
+}
+
+.cor3{
+    background-color: rgb(97, 29, 29);
+}
+
+.cor4{
+    background-color: rgb(138, 14, 14);
+}
+
+.cor5{
+    background-color: rgb(255, 59, 59);
 }

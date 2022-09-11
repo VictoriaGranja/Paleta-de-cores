@@ -1,4 +1,5 @@
 import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'
+import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade} from './gerador.js'
 
 (function(){
     const colorInput = document.getElementById('color')
@@ -19,32 +20,20 @@ import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'
 })()
 
 function trocaCor(corAtual, classe){
-    let corOrginal = document.querySelector(classe)
-    corOrginal.style.backgroundColor = corAtual
+    let corOriginal = document.querySelector(classe)
+    corOriginal.style.backgroundColor = corAtual
 }
 
 function conversor(corAtual){
     let mudaCor = hexToRGB(corAtual)
     mudaCor = RGBToHSL(mudaCor)
     mudaCor = geraPaletaAnaloga(mudaCor)
+    //mudaCor = geraPaletaMonocromatica(mudaCor)
+    //mudaCor = geraPaletaTriade(mudaCor)
     for(let cor = 0; cor < mudaCor.length; cor++){
         let corAux = HSLToRGB(mudaCor[cor])
         mudaCor[cor] = RGBToHex(corAux)
     }
+    console.log(mudaCor)
     return mudaCor
-}
-
-function geraPaletaAnaloga(colorEmHSL){
-
-    let h = colorEmHSL[0]
-    let s = colorEmHSL[1]
-    let l = colorEmHSL[2]
-    
-    let primeiraCor = [h + (2 * 0.03 * h), s + 5, l + 5]
-    let segundaCor = [h + (0.03 * h), s + 5, l + 9]
-    let corPrincipal = [h, s, l]
-    let quartaCor = [h - (0.03 * h), s + 5, l + 9]
-    let quintaCor = [h - (2 * 0.03 * h), s + 5, l + 5]
-
-    return [primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor]
 }

@@ -1,21 +1,4 @@
-/*function hexToRGB(hex){
-    let cor = hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
-               ,(m, r, g, b) => '#' + r + r + g + g + b + b)
-      .substring(1).match(/.{2}/g)
-      .map(x => parseInt(x, 16))
-    return cor
-}
-
-function colorToHex(color) {
-  var hexadecimal = color.toString(16);
-  return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
-}*/
-
 function RGBToHex(rgb) {
-  // Choose correct separator
-  //let sep = rgb.indexOf(",") > -1 ? "," : " ";
-  // Turn "rgb(r,g,b)" into [r,g,b]
-  //rgb = rgb.substr(4).split(")")[0].split(sep);
 
   let r = (+rgb[0]).toString(16),
       g = (+rgb[1]).toString(16),
@@ -44,24 +27,10 @@ function hexToRGB(h) {
     g = "0x" + h[3] + h[4];
     b = "0x" + h[5] + h[6];
   }
-    
-  /*if (isPct) {
-    r = +(r / 255 * 100).toFixed(1);
-    g = +(g / 255 * 100).toFixed(1);
-    b = +(b / 255 * 100).toFixed(1);
-  }*/
+
   let rgb = [r,g,b]
   return rgb
-  //return "rgb(" + (isPct ? r + "%," + g + "%," + b + "%" : +r + "," + +g + "," + +b) + ")";
 }
-
-
-/*function RGBToHex(rgb) {
-  let red = rgb[0]
-  let green = rgb[1]
-  let blue = rgb[2]
-  return "#" + colorToHex(red) + colorToHex(green) + colorToHex(blue);
-}*/
 
 function RGBToHSL(rgb) {
     
@@ -110,7 +79,6 @@ function RGBToHSL(rgb) {
     l = +(l * 100).toFixed(1);
     
     let hsl = [h,s,l]
-    //return "hsl(" + h + "," + s + "%," + l + "%)";
     return hsl
 }
 
@@ -149,7 +117,6 @@ function HSLToRGB(hsl) {
 
       let rgb = [r, g, b]
       return rgb
-      //return "rgb(" + r + "," + g + "," + b + ")";
 }
 
 export{

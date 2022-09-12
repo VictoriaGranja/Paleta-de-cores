@@ -1,5 +1,5 @@
 import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'
-import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade} from './gerador.js'
+import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade, geraPaletaComplementar} from './gerador.js'
 
 (function(){
     const colorInput = document.getElementById('color')
@@ -8,6 +8,8 @@ import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade} from './ge
         console.log(colorCode)
         document.querySelector('.wrapper').style.backgroundColor = colorCode
         document.querySelector('label').style.backgroundColor = colorCode
+        document.querySelector('.opcoes').style.backgroundColor = colorCode
+        document.querySelector('select').style.backgroundColor = colorCode
         let coresNovas = conversor(colorCode)
         trocaCor(coresNovas[0], '.cor1')
         trocaCor(coresNovas[1], '.cor2')
@@ -30,6 +32,7 @@ function conversor(corAtual){
     mudaCor = geraPaletaAnaloga(mudaCor)
     //mudaCor = geraPaletaMonocromatica(mudaCor)
     //mudaCor = geraPaletaTriade(mudaCor)
+    //mudaCor = geraPaletaComplementar(mudaCor)
     for(let cor = 0; cor < mudaCor.length; cor++){
         let corAux = HSLToRGB(mudaCor[cor])
         mudaCor[cor] = RGBToHex(corAux)

@@ -16,6 +16,16 @@ body{
 	align-content: stretch;
 }
 
+select{
+    margin: 30px 20px 0px 50px;
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
+    color: antiquewhite;
+    border-style: double;
+    border-width: thick;
+    border-color: antiquewhite;
+}
+
 .wrapper{
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'
+/*import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'*/
 import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade, geraPaletaComplementar} from './gerador.js'
 
 (function(){
@@ -10,23 +10,23 @@ import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade, geraPaleta
         document.querySelector('label').style.backgroundColor = colorCode
         document.querySelector('.opcoes').style.backgroundColor = colorCode
         document.querySelector('select').style.backgroundColor = colorCode
-        let coresNovas = conversor(colorCode)
+        /*let coresNovas = conversor(colorCode)
         trocaCor(coresNovas[0], '.cor1')
         trocaCor(coresNovas[1], '.cor2')
         trocaCor(coresNovas[2], '.cor3')
         trocaCor(coresNovas[3], '.cor4')
-        trocaCor(coresNovas[4], '.cor5')
+        trocaCor(coresNovas[4], '.cor5')*/
 
     })
     
 })()
 
-function trocaCor(corAtual, classe){
+/*function trocaCor(corAtual, classe){
     let corOriginal = document.querySelector(classe)
     corOriginal.style.backgroundColor = corAtual
-}
+}*/
 
-function conversor(corAtual){
+/*function conversor(corAtual){
     let mudaCor = hexToRGB(corAtual)
     mudaCor = RGBToHSL(mudaCor)
     mudaCor = geraPaletaAnaloga(mudaCor)
@@ -39,4 +39,4 @@ function conversor(corAtual){
     }
     console.log(mudaCor)
     return mudaCor
-}
+}*/

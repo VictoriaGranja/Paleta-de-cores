@@ -1,28 +1,10 @@
 import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'
 const select = document.querySelector('select')
-function clickedOpcao(e){
+function clickedOpcao(){
     
-    /*const opcaoPaleta = e.target.getAttribute("class")*/
     const opcaoPaleta = select.options[select.selectedIndex].value
     console.log(opcaoPaleta)
-    const opcoes = select.getElementsByTagName("option")
-    let colorInput = document.getElementById('color').value
-    /*if(!opcaoPaleta) return "nãoooooooo"
-    console.log(e.target)
-    switch(opcaoPaleta){
-        case "editButton":
-            console.log("é edit no switch")
-        default:
-            console.log("não é edit")
-    }*/
-
-    let opcaoAtual = e.target.children
-    console.log("aqui -> ", opcaoAtual)
-    /*while(opcaoAtual.nodeName != "LI"){
-        opcaoAtual = opcaoAtual.parentElement
-    }*/
-
-    const opcaoAtualIndex = [...opcoes].indexOf(opcaoAtual)
+    let cor = document.getElementById('color')
 
     const actions = {
         analogo: geraPaletaAnaloga,
@@ -32,19 +14,22 @@ function clickedOpcao(e){
     }
 
     if(actions[opcaoPaleta]){
-        colorInput = mudaCorParaHSL(colorInput)
-        colorInput = actions[opcaoPaleta](colorInput)
-        colorInput = mudaCoresParaRGBPaleta(colorInput)
-        
-        trocaCor(colorInput[0], '.cor1')
-        trocaCor(colorInput[1], '.cor2')
-        trocaCor(colorInput[2], '.cor3')
-        trocaCor(colorInput[3], '.cor4')
-        trocaCor(colorInput[4], '.cor5')
+        cor.addEventListener('input', () => {
+            let colorInput = document.getElementById('color').value
+            colorInput = mudaCorParaHSL(colorInput)
+            colorInput = actions[opcaoPaleta](colorInput)
+            colorInput = mudaCoresParaRGBPaleta(colorInput)
+            
+            trocaCor(colorInput[0], '.cor1')
+            trocaCor(colorInput[1], '.cor2')
+            trocaCor(colorInput[2], '.cor3')
+            trocaCor(colorInput[3], '.cor4')
+            trocaCor(colorInput[4], '.cor5')
+        })
     }
 
-
 }
+
 select.addEventListener("click", clickedOpcao)
 
 function trocaCor(corAtual, classe){
@@ -71,9 +56,6 @@ function geraPaletaMonocromatica(corEmHSL){
     let h = corEmHSL[0]
     let s = corEmHSL[1]
     let l = corEmHSL[2]
-    //console.log("aquiiiiiiiiiiii")
-    //console.log(corEmHSL, h, s, l)
-    //usar case em um for?
     let primeiraCor = [h, s, voltaMin(0, 50, l, 50)]
     let segundaCor = [h, saturationMax(s - 30), l + 1]
     let corPrincipal = [h, s, l]
@@ -109,7 +91,6 @@ function geraPaletaComplementar(corEmHSL){
     let corPrincipal = [h, s, l]
     let quartaCor = [voltaMax(360, h, 180), saturationMax(s + 20), mudaBrilhoComplementar(l, 30)]
     let quintaCor = [voltaMax(360, h, 180), s, l]
-    //console.log(corPrincipal, quartaCor, quintaCor)
     return [primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor]
 }
 
@@ -165,9 +146,9 @@ function mudaCoresParaRGBPaleta(cores){
     return cores
 }
 
-export{
+/*export{
     geraPaletaAnaloga,
     geraPaletaMonocromatica,
     geraPaletaTriade,
     geraPaletaComplementar
-}
+}*/

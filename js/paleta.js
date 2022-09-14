@@ -1,14 +1,13 @@
-/*import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'*/
-/*import {geraPaletaAnaloga, geraPaletaMonocromatica, geraPaletaTriade, geraPaletaComplementar} from './gerador.js'*/
+import { geraPaletaAnaloga, mudaCorParaHSL, mudaCoresParaRGBPaleta, trocaCor } from './gerador.js'
 
 (function(){
     const colorInput = document.getElementById('color')
     let colorCode = '#e78de1'
-    mudaBackground(colorCode)
-    colorInput.addEventListener('input', () => {
-        const color = document.getElementById('color').value;
-        mudaBackground(color)
+    geraCores(colorCode)
 
+    colorInput.addEventListener('input', () => {
+        let color = document.getElementById('color').value;
+        geraCores(color)
     })  
 })()
 
@@ -17,4 +16,12 @@ function mudaBackground(colorCode){
     document.querySelector('label').style.backgroundColor = colorCode
     document.querySelector('.opcoes').style.backgroundColor = colorCode
     document.querySelector('select').style.backgroundColor = colorCode
+}
+
+function geraCores(color){
+    mudaBackground(color)
+    color = mudaCorParaHSL(color)
+    color = geraPaletaAnaloga(color[0], color[1], color[2])
+    color = mudaCoresParaRGBPaleta(color)
+    trocaCor(color)
 }

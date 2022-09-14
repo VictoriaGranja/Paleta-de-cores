@@ -128,3 +128,5 @@ function mudaCoresParaRGBPaleta(cores){
     }
     return cores
 }
+
+export{ geraPaletaAnaloga, mudaCorParaHSL, mudaCoresParaRGBPaleta, trocaCor }

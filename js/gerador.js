@@ -3,7 +3,6 @@ const select = document.querySelector('select')
 function clickedOpcao(){
     
     const opcaoPaleta = select.options[select.selectedIndex].value
-    console.log(opcaoPaleta)
     let cor = document.getElementById('color')
 
     const actions = {
@@ -17,14 +16,10 @@ function clickedOpcao(){
         cor.addEventListener('input', () => {
             let colorInput = document.getElementById('color').value
             colorInput = mudaCorParaHSL(colorInput)
-            colorInput = actions[opcaoPaleta](colorInput)
+            colorInput = actions[opcaoPaleta](colorInput[0], colorInput[1], colorInput[2])
             colorInput = mudaCoresParaRGBPaleta(colorInput)
-            
-            trocaCor(colorInput[0], '.cor1')
-            trocaCor(colorInput[1], '.cor2')
-            trocaCor(colorInput[2], '.cor3')
-            trocaCor(colorInput[3], '.cor4')
-            trocaCor(colorInput[4], '.cor5')
+
+            trocaCor(colorInput)
         })
     }
 
@@ -32,16 +27,15 @@ function clickedOpcao(){
 
 select.addEventListener("click", clickedOpcao)
 
-function trocaCor(corAtual, classe){
-    let corOriginal = document.querySelector(classe)
-    corOriginal.style.backgroundColor = corAtual
+function trocaCor(coresDaPaleta){
+    let paleta = document.querySelector('.paleta')
+    let cores = paleta.children
+    for(let cor = 0; cor < cores.length; cor++){
+        cores[cor].style.backgroundColor = coresDaPaleta[cor]
+    }
 }
 
-function geraPaletaAnaloga(corEmHSL){
-
-    let h = corEmHSL[0]
-    let s = corEmHSL[1]
-    let l = corEmHSL[2]
+function geraPaletaAnaloga(h, s, l){
     
     let primeiraCor = [voltaMax(360, h, (2 * 0.03 * h)), saturationMax(s), l + 5]
     let segundaCor = [voltaMax(360, h, (0.03 * h)), saturationMax(s), l + 9]
@@ -52,26 +46,19 @@ function geraPaletaAnaloga(corEmHSL){
     return [primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor]
 }
 
-function geraPaletaMonocromatica(corEmHSL){
-    let h = corEmHSL[0]
-    let s = corEmHSL[1]
-    let l = corEmHSL[2]
+function geraPaletaMonocromatica(h, s, l){
+
     let primeiraCor = [h, s, voltaMin(0, 50, l, 50)]
     let segundaCor = [h, saturationMax(s - 30), l + 1]
     let corPrincipal = [h, s, l]
     let quartaCor = [h, saturationMax(s - 30), voltaMin(0, 50, l, 50)]
     let quintaCor = [h, s, voltaMin(0, 50, l, 20)]
-    console.log(primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor)
+
     return [primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor]
 }
 
-function geraPaletaTriade(corEmHSL){
-    let h = corEmHSL[0]
-    let s = corEmHSL[1]
-    let l = corEmHSL[2]
+function geraPaletaTriade(h, s, l){
 
-    console.log(corEmHSL, h, s, l)
-    //usar case em um for?
     let primeiraCor = [h, saturationMax(s + 10), mudaBrilhoComplementar(l, 30)]
     let segundaCor = [voltaMin(0, 360, h, 240), saturationMax(s - 10), l]
     let corPrincipal = [h, s, l]
@@ -81,16 +68,14 @@ function geraPaletaTriade(corEmHSL){
     return [primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor]
 }
 
-function geraPaletaComplementar(corEmHSL){
-    let h = corEmHSL[0]
-    let s = corEmHSL[1]
-    let l = corEmHSL[2]
+function geraPaletaComplementar(h, s, l){
     
     let primeiraCor = [h, saturationMax(s + 10), mudaBrilhoComplementar(l, 30)]
     let segundaCor = [h, saturationMax(s - 10), saturationMax(l + 10)]
     let corPrincipal = [h, s, l]
     let quartaCor = [voltaMax(360, h, 180), saturationMax(s + 20), mudaBrilhoComplementar(l, 30)]
     let quintaCor = [voltaMax(360, h, 180), s, l]
+
     return [primeiraCor, segundaCor, corPrincipal, quartaCor, quintaCor]
 }
 
@@ -133,22 +118,13 @@ function mudaBrilhoComplementar(light, condicao){
 function mudaCorParaHSL(corAtual){
     let mudaCor = hexToRGB(corAtual)
     mudaCor = RGBToHSL(mudaCor)
-    console.log("aqui -------", mudaCor)
     return mudaCor    
 }
 
 function mudaCoresParaRGBPaleta(cores){
     for(let cor = 0; cor < cores.length; cor++){
         let corAux = HSLToRGB(cores[cor])
-        console.log(corAux)
         cores[cor] = RGBToHex(corAux)
     }
     return cores
 }
-
-/*export{
-    geraPaletaAnaloga,
-    geraPaletaMonocromatica,
-    geraPaletaTriade,
-    geraPaletaComplementar
-}*/

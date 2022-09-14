@@ -4,19 +4,17 @@
 (function(){
     const colorInput = document.getElementById('color')
     let colorCode = '#e78de1'
-    console.log(colorCode)
-    document.querySelector('.wrapper').style.backgroundColor = colorCode
-    document.querySelector('label').style.backgroundColor = colorCode
-    document.querySelector('.opcoes').style.backgroundColor = colorCode
-    document.querySelector('select').style.backgroundColor = colorCode
+    mudaBackground(colorCode)
     colorInput.addEventListener('input', () => {
-        const colorCode = document.getElementById('color').value;
-        console.log(colorCode)
-        document.querySelector('.wrapper').style.backgroundColor = colorCode
-        document.querySelector('label').style.backgroundColor = colorCode
-        document.querySelector('.opcoes').style.backgroundColor = colorCode
-        document.querySelector('select').style.backgroundColor = colorCode
+        const color = document.getElementById('color').value;
+        mudaBackground(color)
 
     })  
 })()
 
+function mudaBackground(colorCode){
+    document.querySelector('.wrapper').style.backgroundColor = colorCode
+    document.querySelector('label').style.backgroundColor = colorCode
+    document.querySelector('.opcoes').style.backgroundColor = colorCode
+    document.querySelector('select').style.backgroundColor = colorCode
+}

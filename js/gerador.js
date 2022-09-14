@@ -30,8 +30,12 @@ select.addEventListener("click", clickedOpcao)
 function trocaCor(coresDaPaleta){
     let paleta = document.querySelector('.paleta')
     let cores = paleta.children
+    let hexa = document.querySelector('.hexa').children
+    
     for(let cor = 0; cor < cores.length; cor++){
         cores[cor].style.backgroundColor = coresDaPaleta[cor]
+        hexa[cor].textContent = coresDaPaleta[cor]
+        console.log(hexa[cor])
     }
 }
 

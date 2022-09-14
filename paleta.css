@@ -6,7 +6,7 @@
 
 body{
     width: 100%;
-    height: 100vh;
+    height: 98vh;
     display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -54,7 +54,6 @@ label{
     height: 50px;
 }
 
-
 footer{
     display: flex;
     align-items: center;
@@ -76,4 +75,15 @@ footer{
 .paleta div{
     width: 342px;
     height: 170px;
+}
+
+.hexa div{
+    width: 342px;
+    height: 10px;
+}
+
+.hexa{
+    display: flex;
+	flex-direction: row;
+    align-items: flex-end;
 }

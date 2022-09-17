@@ -13,7 +13,7 @@ Para escolher outra cor, basta clicar no centro do quadrado que aparecerá um co
 <br/><br/>
 <img src="https://user-images.githubusercontent.com/55770954/190876173-ee6d4eaa-a451-48bc-bacc-c3b60541ca6b.png" alt="drawing" width="379" height="369"/>
 <br/><br/><br/>
-Após escolher a nova cor, uma paleta dela no aparecerá fim da página de acordo com o tipo selecionado.
+Após escolher a nova cor, uma paleta dela aparecerá no fim da página de acordo com o tipo selecionado.
 <br/><br/>
 <img src="https://user-images.githubusercontent.com/55770954/190876638-1fe9ebda-b030-4cd4-9a25-35051975008d.png" alt="drawing" width="683" height="327"/>
 <br/><br/><br/>

@@ -1,17 +1,17 @@
 import {hexToRGB, RGBToHSL, HSLToRGB, RGBToHex} from './conversor.js'
 const select = document.querySelector('select')
-function clickedOpcao(){
-    
-    const opcaoPaleta = select.options[select.selectedIndex].value
-    let cor = document.getElementById('color')
 
+function clickedOpcao(){
+    let opcaoPaleta = select.options[select.selectedIndex].value
+    let cor = document.getElementById('color')
+    
     const actions = {
         analogo: geraPaletaAnaloga,
         monocromatico: geraPaletaMonocromatica,
         triade: geraPaletaTriade,
         complementar: geraPaletaComplementar
     }
-
+    
     if(actions[opcaoPaleta]){
         cor.addEventListener('input', () => {
             let colorInput = document.getElementById('color').value
@@ -22,7 +22,7 @@ function clickedOpcao(){
             trocaCor(colorInput)
         })
     }
-
+    
 }
 
 select.addEventListener("click", clickedOpcao)
@@ -34,8 +34,7 @@ function trocaCor(coresDaPaleta){
     
     for(let cor = 0; cor < cores.length; cor++){
         cores[cor].style.backgroundColor = coresDaPaleta[cor]
-        hexa[cor].textContent = coresDaPaleta[cor]
-        console.log(hexa[cor])
+        hexa[cor].textContent = coresDaPaleta[cor].toUpperCase()
     }
 }
 

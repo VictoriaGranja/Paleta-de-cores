@@ -2,18 +2,17 @@ import { geraPaletaAnaloga, mudaCorParaHSL, mudaCoresParaRGBPaleta, trocaCor } f
 
 (function(){
     const colorInput = document.getElementById('color')
-    let colorCode = '#e78de1'
+    let colorCode = colorInput.value;
     geraCores(colorCode)
 
     colorInput.addEventListener('input', () => {
-        let color = document.getElementById('color').value;
-        geraCores(color)
+        colorCode = colorInput.value;
+        geraCores(colorCode)
     })  
 })()
 
 function mudaBackground(colorCode){
-    document.querySelector('.wrapper').style.backgroundColor = colorCode
-    document.querySelector('label').style.backgroundColor = colorCode
+    document.querySelector('.colora').style.backgroundColor = colorCode
     document.querySelector('.opcoes').style.backgroundColor = colorCode
     document.querySelector('select').style.backgroundColor = colorCode
 }
